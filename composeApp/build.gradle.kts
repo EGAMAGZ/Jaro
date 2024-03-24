@@ -62,6 +62,8 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+
+            implementation("moe.tlaster:precompose:1.6.0-rc05")
             implementation(libs.kotlinx.datetime)
 
         }
