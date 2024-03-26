@@ -62,8 +62,11 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation(compose.materialIconsExtended)
 
-            implementation("moe.tlaster:precompose:1.6.0-rc05")
+            implementation(libs.precompose.core)
+            implementation(libs.precompose.viewmomodel)
+            implementation(libs.napier)
             implementation(libs.kotlinx.datetime)
 
         }
