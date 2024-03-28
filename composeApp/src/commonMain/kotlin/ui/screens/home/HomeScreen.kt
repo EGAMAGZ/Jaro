@@ -13,16 +13,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.LocalRippleTheme
-import androidx.compose.material.ripple.RippleAlpha
-import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import kotlinx.datetime.LocalDate
 import moe.tlaster.precompose.viewmodel.viewModel
+import ui.theme.NoRippleTheme
 import util.Util
 import util.extensions.percentageOfYear
 import viewmodels.HomeViewModel
@@ -111,12 +109,4 @@ private fun HomeContent(
         //Text("${actualDate.percentageOfYear}")
         //Text("${actualDate.roundedPercentageOfYear}")
     }
-}
-
-private object NoRippleTheme : RippleTheme {
-    @Composable
-    override fun defaultColor() = Color.Unspecified
-
-    @Composable
-    override fun rippleAlpha(): RippleAlpha = RippleAlpha(0.0f, 0.0f, 0.0f, 0.0f)
 }
