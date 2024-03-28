@@ -1,4 +1,7 @@
+
 import androidx.compose.runtime.Composable
+import io.github.aakira.napier.DebugAntilog
+import io.github.aakira.napier.Napier
 import moe.tlaster.precompose.PreComposeApp
 import navigation.AppNavigation
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -10,6 +13,7 @@ import ui.theme.JaroTheme
 @Composable
 @Preview
 fun App() {
+    Napier.base(DebugAntilog())
     PreComposeApp {
         JaroTheme {
             AppNavigation()

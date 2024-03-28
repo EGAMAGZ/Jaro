@@ -4,7 +4,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -34,6 +33,7 @@ fun HomeScreen() {
 
     LaunchedEffect(Unit) {
         animationStarted = true
+        viewModel.startTimer()
     }
 
     val actualDate by viewModel.actualDate.collectAsState()
@@ -44,7 +44,6 @@ fun HomeScreen() {
     )
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PercentageText(
     percentage: Float

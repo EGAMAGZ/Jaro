@@ -24,18 +24,18 @@ fun AppNavigation() {
             destroyTransition = fadeOut()
         )
     ) {
-        scene(AppRoutes.Home.route) {
-            Napier.i { "Navigation to ${it.route}" }
+        scene(route = AppRoutes.Home.route) {
+            Napier.i { "Navigation to ${it.route.route}" }
             HomeScreen()
         }
         scene(
-            AppRoutes.Splash.route,
+            route = AppRoutes.Splash.route,
             navTransition = NavTransition(
                 createTransition = fadeIn() + scaleIn(),
                 destroyTransition = fadeOut() + scaleOut()
             )
         ) {
-            Napier.i { "Navigation to ${it.route}" }
+            Napier.i { "Navigation to ${it.route.route}" }
             SplashScreen(navigator = navigator)
         }
     }
