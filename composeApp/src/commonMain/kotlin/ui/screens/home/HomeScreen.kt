@@ -9,6 +9,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import kotlinx.datetime.LocalDate
+import kotlinx.datetime.atTime
 import moe.tlaster.precompose.viewmodel.viewModel
 import ui.components.PercentageText
 import ui.components.ProgressBarBackground
@@ -26,6 +27,7 @@ fun HomeScreen() {
         animationStarted = true
         viewModel.startTimer()
     }
+    LocalDate(2022, 1, 1).atTime(23, 59, 59)
 
     val actualDate by viewModel.actualDate.collectAsState()
 
