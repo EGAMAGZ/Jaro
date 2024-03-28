@@ -2,6 +2,8 @@ package navigation
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import io.github.aakira.napier.Napier
 import moe.tlaster.precompose.navigation.NavHost
@@ -26,7 +28,13 @@ fun AppNavigation() {
             Napier.i { "Navigation to ${it.route}" }
             HomeScreen()
         }
-        scene(AppRoutes.Splash.route) {
+        scene(
+            AppRoutes.Splash.route,
+            navTransition = NavTransition(
+                createTransition = fadeIn() + scaleIn(),
+                destroyTransition = fadeOut() + scaleOut()
+            )
+        ) {
             Napier.i { "Navigation to ${it.route}" }
             SplashScreen(navigator = navigator)
         }

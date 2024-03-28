@@ -13,4 +13,12 @@ inline val LocalDate.isLeapYear: Boolean
 
 inline val LocalDate.remainingDaysInYear: Int get() = daysInYear - dayOfYear
 
-inline val LocalDate.percentageOfYear: Float get() = truncate((dayOfYear.toFloat() / daysInYear.toFloat()) * 100)
+inline val LocalDate.percentageOfYear: Float
+    get() {
+        val percentage = (dayOfYear.toFloat() / daysInYear.toFloat()) * 100
+        val rounded = (percentage * 100).toInt() / 100f
+
+        return rounded
+    }
+
+inline val LocalDate.roundedPercentageOfYear: Float get() = truncate(percentageOfYear)

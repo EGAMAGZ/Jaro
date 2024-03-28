@@ -1,10 +1,15 @@
 package util
 
+import androidx.compose.runtime.Composable
+
 object Util {
 
-    fun roundedPair(number: Float, pair: (Pair<Int, Int>) -> Unit) {
+    @Composable
+    fun roundedPair(number: Float, renderPair: @Composable (Pair<Int, Int>) -> Unit) {
+        val integerPart = number.toInt()
+        val decimalPart = ((number - number.toInt()) * 100)
 
-        val (first, second) = Pair(number.toInt(), ((number - number.toInt()) * 100).toInt())
-        pair(Pair(first, second))
+        val pair = Pair(integerPart, decimalPart.toInt())
+        renderPair(pair)
     }
 }
