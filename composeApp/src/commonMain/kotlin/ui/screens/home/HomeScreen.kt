@@ -1,26 +1,17 @@
 package ui.screens.home
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.core.updateTransition
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.ripple.LocalRippleTheme
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
 import kotlinx.datetime.LocalDate
 import moe.tlaster.precompose.viewmodel.viewModel
-import ui.theme.NoRippleTheme
-import util.Util
+import ui.components.PercentageText
+import ui.components.ProgressBarBackground
 import util.extensions.percentageOfYear
 import viewmodels.HomeViewModel
 
@@ -44,40 +35,6 @@ fun HomeScreen() {
     )
 }
 
-@Composable
-fun PercentageText(
-    percentage: Float
-) {
-    var showDecimals by rememberSaveable { mutableStateOf(false) }
-
-    Util.roundedPair(percentage) {
-        CompositionLocalProvider(LocalRippleTheme provides NoRippleTheme) {
-
-            Row(
-                verticalAlignment = Alignment.Bottom,
-                modifier = Modifier.clickable {
-                    showDecimals = showDecimals.not()
-                }
-
-            ) {
-                Text("${it.first}", style = MaterialTheme.typography.h1)
-                AnimatedVisibility(
-                    visible = showDecimals,
-                ) {
-                    Text(
-                        text = "${it.second}",
-                        style = MaterialTheme.typography.h3.copy(
-                            fontWeight = FontWeight.Light
-                        )
-                    )
-                }
-                Text(
-                    "%", style = MaterialTheme.typography.h1
-                )
-            }
-        }
-    }
-}
 
 @Composable
 private fun HomeContent(
@@ -98,14 +55,21 @@ private fun HomeContent(
         if (it) actualDate.percentageOfYear else 0f
     }
 
-    Column(
+    Box {
+        ProgressBarBackground(indicatorNumber = percentage)
+
+        PercentageText(
+            percentage = percentage,
+            modifier = Modifier.align(Alignment.Center)
+        )
+    }
+    /*Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        PercentageText(percentage = percentage)
 
         //Text("${actualDate.percentageOfYear}")
         //Text("${actualDate.roundedPercentageOfYear}")
-    }
+    }*/
 }
